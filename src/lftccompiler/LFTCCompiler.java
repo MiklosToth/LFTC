@@ -1,7 +1,7 @@
 package lftccompiler;
 
 import Atom.Atom;
-import IO.FileReader;
+import IO.ReadFile;
 import java.util.Vector;
 
 /**
@@ -18,7 +18,7 @@ public class LFTCCompiler {
         Vector<Atom> atoms = new Vector(0);
         
         
-        FileReader sourceFile = new FileReader(fileName);
+        ReadFile sourceFile = new ReadFile(fileName);
         
         while(!sourceFile.EOF())
         {
