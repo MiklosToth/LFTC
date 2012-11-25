@@ -1,13 +1,10 @@
 package lftccompiler;
 
 import Atom.Atom;
-import Atom.AtomFactory;
 import IO.EOF;
 import IO.ReadFile;
 import java.io.IOException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
