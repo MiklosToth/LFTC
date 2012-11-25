@@ -5,7 +5,7 @@ package Atom;
  *
  * @author Miki
  */
-public class Identificator {
+public class Identificator extends Atom {
     
     public boolean isIdentificator(String s) {
         String litera = "[A-za-z]";
@@ -13,4 +13,10 @@ public class Identificator {
 
         return s.matches(litera + "(" + litera + "|" + cifra + ")*");
     }
+
+    public Identificator(String atom) {
+        super(atom);
+    }
+    
+    
 }

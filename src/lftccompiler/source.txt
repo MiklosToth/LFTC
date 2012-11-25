@@ -1,5 +1,4 @@
-Beer timisoreana = new Beer("timisoareana");
-while(timisoreana.isBeer() || !IamDrunk())
-{
-    timisoreana.bea("pahar");
-}
+program weekend ;
+begin
+
+end .
