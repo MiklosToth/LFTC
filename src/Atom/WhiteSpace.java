@@ -11,7 +11,7 @@ public class WhiteSpace extends Atom {
     }
     public static String whitespace[] = {" ", "\t", "\n"};
     
-    public boolean isWhiteSpace(){
-        return this.isInArray(whitespace); 
+    public static boolean isWhiteSpace(String s){
+        return Atom.isInArray(whitespace, s); 
     }
 }

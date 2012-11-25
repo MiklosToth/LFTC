@@ -30,9 +30,6 @@ public class LFTCCompiler {
             } catch (IOException | EOF ex) {
                 break;
             }
-
-            //if (AtomFactory.isNewAtom()) {
-            //}
             
         }
 

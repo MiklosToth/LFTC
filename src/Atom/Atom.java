@@ -12,9 +12,9 @@ public class Atom {
         this.atom = atom;
     }
 
-    protected boolean isInArray(String[] array) {
+    public static boolean isInArray(String[] array, String s) {
         for (String item : array) {
-            if (item.equals(atom)) {
+            if (item.equals(s)) {
                 return true;
             }
         }
