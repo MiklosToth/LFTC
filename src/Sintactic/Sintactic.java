@@ -14,6 +14,9 @@ public class Sintactic {
     public static boolean verify(Vector<Atom> atoms) {
         HashMap<String, String> programTemplate = new HashMap<>();
         programTemplate.put("CuvantCheie", "program");
+        programTemplate.put("Identificator", "");
+        programTemplate.put("functie", "block");
+        
         return true;
     }
 
