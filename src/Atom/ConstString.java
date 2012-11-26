@@ -11,11 +11,13 @@ public class ConstString extends Atom{
         super(atom);
     }
 
-    
-    
     public static boolean isConstString(String s) {
-        
-        return s.matches("\"|\'[\\x20-\\x7F]\"|\'");
+        if(s.matches("\"[\\x20-\\x7F]*\"")) {
+            return true;
+        } else if(s.matches("\'[\\x20-\\x7F]*\'")) {
+            return true;
+        }
+        return false;
     }
     
 }

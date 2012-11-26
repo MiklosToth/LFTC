@@ -7,7 +7,7 @@ package Atom;
  */
 public class Identificator extends Atom {
     
-    public boolean isIdentificator(String s) {
+    public static boolean isIdentificator(String s) {
         String litera = "[A-za-z]";
         String cifra = "[0-9]";
 
