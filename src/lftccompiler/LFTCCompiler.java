@@ -23,7 +23,7 @@ public class LFTCCompiler {
         Vector<Atom> atoms = new Vector(0);
 
 
-        ReadFile sourceFile = new ReadFile("C:/Users/Miki/Documents/NetBeansProjects/LFTCCompiler/src/lftccompiler/" + fileName);
+        ReadFile sourceFile = new ReadFile("C:/Users/Anne/Documents/NetBeansProjects/LFTC-analizator/src/lftccompiler/" + fileName);
 
         while (true) {
 
@@ -42,24 +42,23 @@ public class LFTCCompiler {
 
         }
 
-        atoms = AtomFactory.getAtoms();
-//        int i = 0;
+   //    atoms = AtomFactory.getAtoms();
+  //      int i = 0;
 ////        
 ////        atoms.add(new CuvantCheie("program"));
 ////        atoms.add(new Identificator("bla"));
 ////        
-//        for (Atom atom : atoms) {
-//            System.out.println("(" + i++ + ")" + atom.getClass() + ":" + atom);
+        //for (Atom atom : atoms) {
+            //System.out.println("(" + i++ + ")" + atom.getClass() + ":" + atom);
+        //}
+        
+        
+//        if(Sintactic.verify(atoms)==false){
+//            System.out.println("Sintax is bad");
+//            System.exit(-1);
 //        }
         
-        
-        if(Sintactic.verify(atoms)==false){
-            System.out.println("Sintax is bad");
-            System.exit(-1);
-        }
-        
-        System.out.println("Sintax OK");
-        
+        //System.out.println("Sintax OK");
         
 
     }
