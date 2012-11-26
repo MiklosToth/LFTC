@@ -1,4 +1,3 @@
-
 package Sintactic;
 
 import Atom.Atom;
@@ -17,36 +16,48 @@ public class Sintactic {
     public Sintactic(Vector<Atom> atoms) {
         this.atoms = atoms;
     }
-    
-    
-    
-    public boolean verify(){
+
+    public boolean verify() {
         LinkedHashMap<String, String> programTemplate = new LinkedHashMap<>();
         programTemplate.put("CuvantCheie", "program");
         programTemplate.put("Identificator", "");
         programTemplate.put("functie", "block");
-        
+
         return checkTemplate(programTemplate);
     }
 
     private boolean checkTemplate(LinkedHashMap<String, String> programTemplate) {
         Object[] keys = programTemplate.keySet().toArray();
-        
+
         for (int i = 0; i < keys.length; i++) {
             System.out.println(keys[i]);
-//            if(keys[i].equals("functie")){
-//                //apeleaza functia din hash
-//            }
-//            
-            if(atoms.get(i).getClass().toString().equals(keys[i])){
-                //verifica daca in hash e "" ->>>continue
-                if(programTemplate.get(keys[i]))
-                //verifica daca in hash e ce e in atomi
+            if (keys[i].equals("functie")) {
+                //apeleaza functia din hash
+                System.out.println("functie");
+                //continue;
             }
+//            
+            if (atoms.get(i).getClass().toString().equals(keys[i])) {
+                //verifica daca in hash e "" ->>>continue
+                if (programTemplate.get(keys[i]).equals("")) {
+                    System.out.println(keys[i] + "->''");
+                    //continue; //for
+                }
+                //verifica daca in hash e ce e in atomi
+                if (!programTemplate.get(keys[i]).equals(atoms.get(i).toString())) {
+
+                   // return false;
+                } else {
+                    System.out.println(keys[i] + "->" + programTemplate.get(keys[i]));
+                }
+            } else {
+               // return false;
+            }
+
+            return true;
         }
-        
-        
+
+
         return true;
     }
-
 }
