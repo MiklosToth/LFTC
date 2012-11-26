@@ -1,1 +1,4 @@
-program bla dfgdf gdfg 
+program x ;
+begin 
+    ( a + b ) - 4.6 = 3 ; 
+end . 
