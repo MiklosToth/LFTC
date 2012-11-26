@@ -38,6 +38,8 @@ public class AtomFactory {
             }
             
             atoms.add(atom);
+            //System.out.println(s);
+            s = "";
             
         }
         else{

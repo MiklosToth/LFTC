@@ -1,4 +1,1 @@
-program weekend ;
-begin
-
-end .
++ - <= *
