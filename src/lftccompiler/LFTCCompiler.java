@@ -23,7 +23,7 @@ public class LFTCCompiler {
         Vector<Atom> atoms = new Vector(0);
 
 
-        ReadFile sourceFile = new ReadFile("C:/Users/Miki/Documents/NetBeansProjects/LFTCCompiler/src/lftccompiler/" + fileName);
+        ReadFile sourceFile = new ReadFile("C:/Users/Anne/Documents/NetBeansProjects/LFTC-analizator/src/lftccompiler/" + fileName);
 
         while (true) {
 
