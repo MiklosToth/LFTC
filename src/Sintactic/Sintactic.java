@@ -13,6 +13,7 @@ public class Sintactic {
 
     private Vector<Atom> atoms;
     private int position;
+    
 
     public Sintactic(Vector<Atom> atoms) {
         this.atoms = atoms;
@@ -56,11 +57,19 @@ public class Sintactic {
     }
 
     private boolean sectiuneConst() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        if (atoms.get(position).toString().equals("const")) {
+            listaDeclConst();
+        }
+        
+        return true;
     }
 
     private boolean sectiuneVar() {
-        throw new UnsupportedOperationException("Not yet implemented");
+       if (atoms.get(position).toString().equals("var")) {
+            listaDeclVar();
+        }
+        
+        return true;
     }
 
     private boolean sectiuneDeclSubprogram() {
@@ -69,5 +78,99 @@ public class Sintactic {
 
     private boolean instructiuniComp() {
         throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private boolean listaDeclConst() {
+        if(declarConst()) {
+            return true;
+        }
+        listaDeclConst();
+    }
+
+    private void listaDeclVar() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private boolean declarConst() {
+        int aux = position;
+        
+        if(!(atoms.get(aux++).getClass().equals("Identificator"))) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals("="))) {
+            return false;
+        }
+        if(!expresieStatica(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals(";"))) {
+            return false;
+        }
+        
+        return expresieStatica(aux);
+        
+    }
+
+    private boolean expresieStatica(int aux) {
+        if(termenStatic(aux)) {
+            return true;
+        }
+        expresieStatica(aux);
+        opAd(aux);
+        termenStatic(aux);
+        
+        return true;
+    }
+
+    private boolean termenStatic(int aux) {
+        if(factorStatic(aux)) {
+            return true;
+        }
+        
+        termenStatic(aux);
+        opMul(aux);
+        factorStatic(aux);
+        
+        return true;
+    }
+
+    private boolean opAd(int aux) {
+        if(!(atoms.get(aux).toString().equals("+"))) {
+            return false;
+        }
+        if(!(atoms.get(aux).toString().equals("-"))) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    private boolean factorStatic(int aux) {
+        if(atoms.get(aux).getClass().equals("Identificator")) {
+            return true;
+        }
+        if(constanta(aux)) {
+            return true;
+        }
+        
+        
+        
+    }
+
+    private boolean opMul(int aux) {
+        if(!(atoms.get(aux).toString().equals("*"))) {
+            return false;
+        }
+        if(!(atoms.get(aux).toString().equals("/"))) {
+            return false;
+        }
+        if(!(atoms.get(aux).toString().equals("div"))) {
+            return false;
+        }
+        if(!(atoms.get(aux).toString().equals("mod"))) {
+            return false;
+        }
+        
+        return true;
     }
 }
