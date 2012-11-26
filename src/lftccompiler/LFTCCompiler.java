@@ -52,8 +52,9 @@ public class LFTCCompiler {
             System.out.println("(" + i++ + ")" + atom.getClass() + ":" + atom);
         }
         
+        Sintactic sintacticAnalyzer = new Sintactic(atoms);
         
-        if(Sintactic.verify(atoms)==false){
+        if(sintacticAnalyzer.verify()==false){
             System.out.println("Sintax is bad");
             System.exit(-1);
         }
