@@ -12,9 +12,11 @@ import java.util.Vector;
 public class Sintactic {
 
     private Vector<Atom> atoms;
+    private int position;
 
     public Sintactic(Vector<Atom> atoms) {
         this.atoms = atoms;
+        position = 0;
     }
 
     public boolean verify() {
@@ -23,10 +25,10 @@ public class Sintactic {
     }
 
     private boolean program() {
-        if (!(atoms.get(0).toString().equals("program"))) {
+        if (!(atoms.get(position++).toString().equals("program"))) {
             return false;
         }
-        if (!(atoms.get(1).getClass().toString().equals("Identificator"))) {
+        if (!(atoms.get(position++).getClass().toString().equals("Identificator"))) {
             return false;
         }
         
