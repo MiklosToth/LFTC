@@ -43,14 +43,14 @@ public class LFTCCompiler {
         }
 
         atoms = AtomFactory.getAtoms();
-//        int i = 0;
-////        
-////        atoms.add(new CuvantCheie("program"));
-////        atoms.add(new Identificator("bla"));
-////        
-//        for (Atom atom : atoms) {
-//            System.out.println("(" + i++ + ")" + atom.getClass() + ":" + atom);
-//        }
+        int i = 0;
+//        
+//        atoms.add(new CuvantCheie("program"));
+//        atoms.add(new Identificator("bla"));
+//        
+        for (Atom atom : atoms) {
+            System.out.println("(" + i++ + ")" + atom.getClass() + ":" + atom);
+        }
         
         
         if(Sintactic.verify(atoms)==false){
