@@ -15,8 +15,8 @@ public class Delimitator extends Atom{
     
     
     
-    public boolean isDelimitator(String s){
-        return this.isInArray(delimitator);
+    public static boolean isDelimitator(String s){
+        return Atom.isInArray(delimitator, s);
     }
 
 }

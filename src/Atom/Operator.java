@@ -15,7 +15,7 @@ public class Operator extends Atom{
         super(atom);    
     }
 
-    public boolean isOperator() {
-        return this.isInArray(operator);
+    public static boolean isOperator(String s) {
+        return Atom.isInArray(operator, s);
     }
 }

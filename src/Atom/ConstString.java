@@ -13,7 +13,7 @@ public class ConstString extends Atom{
 
     
     
-    public boolean isConstString(String s) {
+    public static boolean isConstString(String s) {
         
         return s.matches("\"|\'[\\x20-\\x7F]\"|\'");
     }

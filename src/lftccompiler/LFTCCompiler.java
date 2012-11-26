@@ -2,12 +2,12 @@ package lftccompiler;
 
 import Atom.Atom;
 import Atom.AtomFactory;
+import Atom.NotAtomException;
 import IO.EOF;
 import IO.ReadFile;
+import Sintactic.Sintactic;
 import java.io.IOException;
 import java.util.Vector;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -28,16 +28,39 @@ public class LFTCCompiler {
         while (true) {
 
             try {
-                //AtomFactory.handleNewChar(sourceFile.get());
-                System.out.print(sourceFile.get());
+                try {
+                    char ch = sourceFile.get();
+                    //System.out.print(ch);
+                    AtomFactory.handleNewChar(ch);
+
+                } catch (NotAtomException ex) {
+                    //System.err.println(ex);
+                }
             } catch (IOException | EOF ex) {
                 break;
             }
 
-            //if (AtomFactory.isNewAtom()) {
-            //}
-            
         }
+
+        atoms = AtomFactory.getAtoms();
+//        int i = 0;
+////        
+////        atoms.add(new CuvantCheie("program"));
+////        atoms.add(new Identificator("bla"));
+////        
+//        for (Atom atom : atoms) {
+//            System.out.println("(" + i++ + ")" + atom.getClass() + ":" + atom);
+//        }
+        
+        
+        if(Sintactic.verify(atoms)==false){
+            System.out.println("Sintax is bad");
+            System.exit(-1);
+        }
+        
+        System.out.println("Sintax OK");
+        
+        
 
     }
 }

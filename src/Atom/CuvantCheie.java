@@ -17,7 +17,7 @@ public class CuvantCheie extends Atom {
         
     }
 
-    public boolean isCuvCheie() {
-        return this.isInArray(cuvCheie);
+    public static boolean isCuvantCheie(String s) {
+        return Atom.isInArray(cuvCheie, s);
     }
 }
