@@ -84,11 +84,14 @@ public class Sintactic {
         if(declarConst()) {
             return true;
         }
-        listaDeclConst();
+        return listaDeclConst();
     }
 
-    private void listaDeclVar() {
-        throw new UnsupportedOperationException("Not yet implemented");
+    private boolean listaDeclVar() {
+        if(declarVar()) {
+            return true;
+        }
+        return listaDeclVar();
     }
 
     private boolean declarConst() {
@@ -152,9 +155,14 @@ public class Sintactic {
         if(constanta(aux)) {
             return true;
         }
+        if(atoms.get(aux).toString().equals("(")) {
+            expresieStatica(aux);
+            if(atoms.get(aux).toString().equals(")")) {
+                return true;
+            }
+        }
         
-        
-        
+        return true;
     }
 
     private boolean opMul(int aux) {
@@ -173,4 +181,154 @@ public class Sintactic {
         
         return true;
     }
+
+    private boolean constanta(int aux) {
+        if(!(atoms.get(aux).getClass().equals("ConstNum"))) {
+            return false;
+        }
+        if(!(atoms.get(aux).getClass().equals("Identificator"))) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    private boolean declarVar() {
+        int aux = position;
+        
+        if(!listaId(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals(":"))) {
+            return false;
+        }
+        if(!tip(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals(";"))) {
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private boolean listaId(int aux) {
+        if(!(atoms.get(aux).getClass().equals("Identificator"))) {
+            return false;
+        }
+        
+        if(!listaId(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux).toString().equals(","))) {
+            return false;
+        }
+        if(!(atoms.get(aux).getClass().equals("Identificator"))) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    private boolean tip(int aux) {
+        if(!tipSimplu(aux)) {
+            return false;
+        }
+        if(!tipTablou(aux)) {
+            return false;
+        }
+        if(!tipStruct(aux)) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    private boolean tipSimplu(int aux) {
+        if(!(atoms.get(aux).toString().equals("integer"))) {
+            return false;
+        }
+        if(!(atoms.get(aux).toString().equals("real"))) {
+            return false;
+        }
+        if(!(atoms.get(aux).toString().equals("char"))) {
+            return false;
+        }
+        
+        return true;
+        
+    }
+
+    private boolean tipTablou(int aux) {
+        if(!(atoms.get(aux++).toString().equals("array"))) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals("["))) {
+            return false;
+        }
+        if(!expresieStatica(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals(".."))) {
+            return false;
+        }
+        if(!expresieStatica(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals("of"))) {
+            return false;
+        }
+        if(!tipSimplu(aux)) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    private boolean tipStruct(int aux) {
+        if(!(atoms.get(aux).toString().equals("record"))) {
+            return false;
+        }
+        if(!listaCamp(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux).toString().equals("end"))) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    private boolean listaCamp(int aux) {
+        if(!declSimpla(aux)) {
+            return false;
+        }
+        if(!listaCamp(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux).toString().equals(";"))) {
+            return false;
+        }
+        if(!declSimpla(aux)) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    private boolean declSimpla(int aux) {
+        if(!listaId(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux).toString().equals(";"))) {
+            return false;
+        }
+        if(!declSimpla(aux)) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    
 }
