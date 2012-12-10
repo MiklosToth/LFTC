@@ -32,6 +32,9 @@ public class Sintactic {
         if (!(atoms.get(position++).getClass().toString().equals("Identificator"))) {
             return false;
         }
+         if (!(atoms.get(position++).toString().equals(";"))) {
+             return false;
+         }
         
         return block();
         
@@ -41,7 +44,7 @@ public class Sintactic {
 
     private boolean block() {
         if(!(sectiuneConst())){
-            return false;
+             return false;
         }
         if(!(sectiuneVar())){
             return false;
@@ -57,8 +60,9 @@ public class Sintactic {
     }
 
     private boolean sectiuneConst() {
-        if (atoms.get(position).toString().equals("const")) {
-            listaDeclConst();
+        int aux = position;
+        if (atoms.get(aux++).toString().equals("const")) {
+            return listaDeclConst(aux);
         }
         
         return true;
@@ -73,18 +77,22 @@ public class Sintactic {
     }
 
     private boolean sectiuneDeclSubprogram() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        listaDeclSubprogram();
+        
+        return true;        
     }
 
     private boolean instructiuniComp() {
-        throw new UnsupportedOperationException("Not yet implemented");
+        
     }
 
-    private boolean listaDeclConst() {
+    private boolean listaDeclConst(int aux) {
         if(declarConst()) {
-            return true;
+            return listaDeclConst(aux);
         }
-        return listaDeclConst();
+        
+        return true;
+        
     }
 
     private boolean listaDeclVar() {
@@ -324,6 +332,133 @@ public class Sintactic {
             return false;
         }
         if(!declSimpla(aux)) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    private boolean listaDeclSubprogram() {
+        if(declSubprgram()) {
+            return true;
+        }
+        return listaDeclSubprogram();
+    }
+
+    private boolean declSubprgram() {
+        int aux = position;
+        
+        if(!declarFunctie (aux) && declarProcedura(aux)) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    private boolean declarFunctie(int aux) {
+        
+        if(!(atoms.get(aux++).toString().equals("function"))) {
+            return false;
+        }
+        if(!antetSubprog(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals(":"))) {
+            return false;
+        }
+        if(!tipSimplu(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals(";"))) {
+            return false;
+        }
+        if(!block()) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals(";"))) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    private boolean declarProcedura(int aux) {
+       if(!(atoms.get(aux++).toString().equals("function"))) {
+            return false;
+        }
+        if(!antetSubprog(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals(";"))) {
+            return false;
+        }
+        if(!block()) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals(";"))) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    private boolean antetSubprog(int aux) {
+        if(!(atoms.get(aux++).getClass().equals("Identificator"))) {
+            return false;
+        }
+        
+        if(!paramForm(aux++)) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    private boolean paramForm(int aux) {
+        if(!(atoms.get(aux++).toString().equals("("))) {
+            return false;
+        }
+        if(!listaParamForm(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals(")"))) {
+            return false;
+        }
+        
+        return true;
+    }
+
+    private boolean listaParamForm(int aux) {
+        
+        if(!declarPar(aux) && !listaParamForm(aux)) {
+            return false;
+        }
+        if(!(atoms.get(aux).toString().equals(";"))) {
+            return false;
+        }
+        if(!declarPar(aux)) {
+            return false;
+        }
+        
+        return true;
+        
+    }
+
+    private boolean declarPar(int aux) {
+        if(!declarSimpla(aux) && !(atoms.get(aux).toString().equals("var")) && !declarSimpla(aux)) {
+            return false;
+        }
+        return true;
+    }
+
+    private boolean declarSimpla(int aux) {
+        if(!listaId(aux++)) {
+            return false;
+        }
+        if(!(atoms.get(aux++).toString().equals(":"))) {
+            return false;
+        }
+        if(!tipSimplu(aux++)) {
             return false;
         }
         
